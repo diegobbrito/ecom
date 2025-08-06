@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/diegobbrito/ecom/config"
 	"github.com/diegobbrito/ecom/service/auth"
 	"github.com/diegobbrito/ecom/types"
 	"github.com/diegobbrito/ecom/utils"
@@ -49,7 +50,14 @@ func (h *Handler) handleLogin(w http.ResponseWriter, r *http.Request) {
 		utils.WriteError(w, http.StatusBadRequest, fmt.Errorf("not found, invalid email or password"))
 	}
 
-	utils.WriteJSON(w, http.StatusOK, map[string]string{"token": ""})
+	secret := []byte(config.Envs.JWTSecret) // Use user's password as secret for JWT
+	token, err := auth.CreateJWT(secret, u.ID)
+	if err != nil {
+		utils.WriteError(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	utils.WriteJSON(w, http.StatusOK, map[string]string{"token": token})
 
 }
 
