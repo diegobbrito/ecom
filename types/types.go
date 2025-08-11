@@ -10,6 +10,7 @@ type UserStore interface {
 
 type ProductStore interface {
 	GetProducts() ([]Product, error)
+	CreateProduct(*Product) error
 }
 
 type Product struct {
