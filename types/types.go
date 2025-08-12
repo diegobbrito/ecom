@@ -13,6 +13,29 @@ type ProductStore interface {
 	CreateProduct(*Product) error
 }
 
+type OrderStore interface {
+	CreateOrder(Order) (int, error)
+	CreateOrderItem(OrderItem) error
+}
+
+type Order struct {
+	ID        int       `json:"id"`
+	UserID    int       `json:"user_id"`
+	Total     float64   `json:"total"`
+	Status    string    `json:"status"`
+	Address   string    `json:"address"`
+	CreatedAt time.Time `json:"created_at"`
+}
+
+type OrderItem struct {
+	ID        int       `json:"id"`
+	OrderID   int       `json:"order_id"`
+	ProductID int       `json:"product_id"`
+	Quantity  int       `json:"quantity"`
+	Price     float64   `json:"price"`
+	CreatedAt time.Time `json:"created_at"`
+}
+
 type Product struct {
 	ID          int       `json:"id"`
 	Name        string    `json:"name"`
