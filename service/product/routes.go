@@ -38,7 +38,7 @@ func (h *Handler) handlerCreateProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := h.store.CreateProduct(&p); err != nil {
+	if err := h.store.CreateProduct(p); err != nil {
 		utils.WriteError(w, http.StatusInternalServerError, err)
 		return
 	}
