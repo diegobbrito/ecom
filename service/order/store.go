@@ -10,6 +10,10 @@ type Store struct {
 	db *sql.DB
 }
 
+func NewStore(db *sql.DB) *Store {
+	return &Store{db: db}
+}
+
 func (s *Store) CreateOrder(order types.Order) (int, error) {
 	res, err := s.db.Exec("INSERT INTO orders (user_id, total, status, address) VALUES (?, ?, ?, ?)",
 		order.UserID, order.Total, order.Status, order.Address)
