@@ -34,7 +34,7 @@ func (h *Handler) createOrder(ps []types.Product, items []types.CartItem, userID
 		h.productStore.UpdateProduct(product)
 	}
 
-	orderID, err := h.store.CreateOrder(types.Order{
+	orderID, err := h.orderStore.CreateOrder(types.Order{
 		UserID:  userID,
 		Total:   totalPrice,
 		Status:  "pending",
@@ -44,7 +44,7 @@ func (h *Handler) createOrder(ps []types.Product, items []types.CartItem, userID
 		return 0, 0, err
 	}
 	for _, item := range items {
-		h.store.CreateOrderItem(types.OrderItem{
+		h.orderStore.CreateOrderItem(types.OrderItem{
 			OrderID:   orderID,
 			ProductID: item.ProductID,
 			Quantity:  item.Quantity,
