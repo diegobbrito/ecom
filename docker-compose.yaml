@@ -1,0 +1,33 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_ecom
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ecomdb
+      MYSQL_USER: ecomuser
+      MYSQL_PASSWORD: ecompassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: ecom_app
+    depends_on:
+      - db
+    environment:
+      PORT: 8080
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: ecomuser
+      DB_PASSWORD: ecompassword
+      DB_NAME: ecomdb
+    ports:
+      - "8080:8080"
+    restart: always
+
+volumes:
+  db_data:
