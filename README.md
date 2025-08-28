@@ -4,7 +4,6 @@
 	<img src="https://img.shields.io/github/license/diegobbrito/ecom?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/diegobbrito/ecom?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
 	<img src="https://img.shields.io/github/languages/top/diegobbrito/ecom?style=default&color=0080ff" alt="repo-top-language">
-	<img src="https://img.shields.io/github/languages/count/diegobbrito/ecom?style=default&color=0080ff" alt="repo-language-count">
 </p>
 <br>
 
